@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- XD colors-->
+    <color name="XD_primary">#32c5cf</color>
+    <color name="XD_secondary">#22b2bc</color>
+    <color name="XD_third">#008d97</color>
+    <color name="XD_especial">#092b5a</color>
+    <color name="menu_navegacao">@color/white</color>
+</resources>
