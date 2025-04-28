@@ -6,13 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.xdprototipo.R
-import com.example.xdprototipo.databinding.ActivityPlanosEprecosBinding
+import com.example.xdprototipo.databinding.ActivityXdOrdersBinding
 
-class planosEprecosActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityPlanosEprecosBinding
+class xdOrdersActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityXdOrdersBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityPlanosEprecosBinding.inflate(layoutInflater)
+        binding = ActivityXdOrdersBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
