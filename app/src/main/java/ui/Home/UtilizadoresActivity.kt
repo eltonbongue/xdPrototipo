@@ -31,22 +31,26 @@ class utilizadoresActivity : AppCompatActivity() {
             insets
         }
 
-        // Navegação
+
         binding.textViewBack.setOnClickListener { finish() }
         binding.button.setOnClickListener { navigateToRegistrar() }
 
-        // RecyclerView + Adapter
         adapter = UserAdapter(emptyList())
-        binding.RecyclerViewUsers.layoutManager = LinearLayoutManager(this)
+        binding.RecyclerViewUsers.layoutManager = LinearLayoutManager(
+            this,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+
         binding.RecyclerViewUsers.adapter = adapter
 
-        // ViewModel
+
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         userViewModel.usuarios.observe(this) { usuarios ->
             adapter.updateList(usuarios)
         }
 
-        // Carregar dados
+
         userViewModel.carregarUsuarios()
     }
 
