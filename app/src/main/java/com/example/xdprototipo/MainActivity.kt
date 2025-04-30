@@ -2,13 +2,10 @@ package com.example.xdprototipo
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.databinding.DataBindingUtil
-import com.example.xdprototipo.databinding.ActivityDefinicoesBinding
 import com.example.xdprototipo.databinding.ActivityMainBinding
 import ui.Home.definicoesActivity
 import ui.Home.inicializarActivity

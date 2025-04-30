@@ -1,4 +1,4 @@
-package com.example.seuprojeto.datasource.database
+package com.example.xdprototipo.data.datasource
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -26,7 +26,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     companion object {
-        const val DATABASE_NAME = "appXD_database.db"
+        const val DATABASE_NAME = "SQLiteDatabase"
         const val DATABASE_VERSION = 1
 
         const val TABLE_USERS = "users"
