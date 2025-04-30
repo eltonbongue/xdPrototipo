@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,135 +8,29 @@
     android:layout_height="match_parent"
     tools:context="ui.Home.HomePageUsersActivity">
 
-    <TextView
-        android:id="@+id/textViewDesconto"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:drawableTop="@drawable/arrows"
-        android:text="DESCONTO"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTransferencia"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewTransferencia"
-        tools:layout_editor_absoluteY="559dp" />
+    <!-- TOPO -->
 
-    <TextView
-        android:id="@+id/textViewOutros"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:drawableTop="@drawable/pedidos"
-        android:text="OUTROS"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewConta"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewConta"
-        tools:layout_editor_absoluteY="559dp" />
-
-    <TextView
-        android:id="@+id/textViewMenuInicial"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:drawableTop="@drawable/arrow_left"
-        android:text="MENU INICIAL"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewPagamento"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewPagamento"
-        tools:layout_editor_absoluteY="559dp" />
-
-    <TextView
-        android:id="@+id/textViewTransferencia"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:drawableTop="@drawable/data_transfer"
-        android:text="TRANSFERÊNCIA"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewAnular"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewAnular"
-        tools:layout_editor_absoluteY="405dp" />
-
-    <TextView
-        android:id="@+id/textViewConta"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:drawableTop="@drawable/accounting"
-        android:text="CONTA"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewPedido"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewPedido"
-        tools:layout_editor_absoluteY="405dp" />
-
-    <TextView
-        android:id="@+id/textViewPagamento"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:drawableTop="@drawable/credit_card"
-        android:text="PAGAMENTO PARCIAL"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewSubTotal"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewSubTotal"
-        tools:layout_editor_absoluteY="405dp" />
-
-    <TextView
-        android:id="@+id/textViewPedido"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:drawableTop="@drawable/clipboard"
-        android:text="PEDIR"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewConta"
-        app:layout_constraintEnd_toStartOf="@+id/textViewAnular"
-        app:layout_constraintHorizontal_bias="0.5"
+    <ImageView
+        android:id="@+id/imageViewUserHome"
+        android:layout_width="113dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textViewAnular"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:drawableTop="@drawable/cancel"
-        android:text="ANULAR"
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuário"
         android:textColor="@color/white"
-        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewPedido"
-        app:layout_constraintEnd_toStartOf="@+id/textViewSubTotal"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewPedido"
-        app:layout_constraintTop_toTopOf="@+id/textViewPedido" />
-
-    <TextView
-        android:id="@+id/textViewSubTotal"
-        android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:drawableTop="@drawable/pedidos"
-        android:text="SUBTOTAL"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewAnular"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewAnular"
-        app:layout_constraintTop_toTopOf="@+id/textViewAnular"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@id/imageViewUserHome"
+        app:layout_constraintTop_toTopOf="@id/imageViewUserHome"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewUserHome"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView12"
@@ -144,27 +39,128 @@
         android:text="CAIXA DE SAÍDA"
         android:textColor="@color/white"
         android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUserHome"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="188dp" />
+        android:layout_marginTop="8dp"/>
 
-    <ImageView
-        android:id="@+id/imageViewUserHome"
-        android:layout_width="113dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
+    <!-- LINHA 1 -->
     <TextView
-        android:id="@+id/textViewUserName"
-        android:layout_width="101dp"
-        android:layout_height="33dp"
-        android:text="TextView"
+        android:id="@+id/textViewPedido"
+        android:layout_width="120dp"
+        android:layout_height="106dp"
+        android:text="PEDIR"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewUserHome"
-        app:layout_constraintTop_toTopOf="@+id/imageViewUserHome"
-        tools:layout_editor_absoluteX="152dp" />
+        android:background="@drawable/bg_rounded_textview"
+        android:drawableTop="@drawable/clipboard"
+        app:layout_constraintTop_toBottomOf="@id/textView12"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/textViewAnular"
+        android:layout_width="120dp"
+        android:layout_height="106dp"
+        android:text="ANULAR"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/bg_rounded_textview"
+        android:drawableTop="@drawable/cancel"
+        app:layout_constraintTop_toTopOf="@id/textViewPedido"
+        app:layout_constraintStart_toEndOf="@id/textViewPedido"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/textViewSubTotal"
+        android:layout_width="120dp"
+        android:layout_height="106dp"
+        android:text="SUBTOTAL"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/bg_rounded_textview"
+        android:drawableTop="@drawable/pedidos"
+        app:layout_constraintTop_toTopOf="@id/textViewPedido"
+        app:layout_constraintStart_toEndOf="@id/textViewAnular"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
+
+    <!-- LINHA 2 -->
+    <TextView
+        android:id="@+id/textViewPagamento"
+        android:layout_width="120dp"
+        android:layout_height="106dp"
+        android:text="PAGAMENTO PARCIAL"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/bg_rounded_textview"
+        android:drawableTop="@drawable/credit_card"
+        app:layout_constraintTop_toBottomOf="@id/textViewPedido"
+        app:layout_constraintStart_toStartOf="@id/textViewPedido"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/textViewTransferencia"
+        android:layout_width="120dp"
+        android:layout_height="106dp"
+        android:text="TRANSFERÊNCIA"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/bg_rounded_textview"
+        android:drawableTop="@drawable/data_transfer"
+        app:layout_constraintTop_toTopOf="@id/textViewPagamento"
+        app:layout_constraintStart_toStartOf="@id/textViewAnular" />
+
+    <TextView
+        android:id="@+id/textViewConta"
+        android:layout_width="120dp"
+        android:layout_height="106dp"
+        android:text="CONTA"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/bg_rounded_textview"
+        android:drawableTop="@drawable/accounting"
+        app:layout_constraintTop_toTopOf="@id/textViewPagamento"
+        app:layout_constraintStart_toStartOf="@id/textViewSubTotal" />
+
+    <!-- LINHA 3 -->
+    <TextView
+        android:id="@+id/textViewMenuInicial"
+        android:layout_width="120dp"
+        android:layout_height="106dp"
+        android:text="MENU INICIAL"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/bg_rounded_textview"
+        android:drawableTop="@drawable/arrow_left"
+        app:layout_constraintTop_toBottomOf="@id/textViewPagamento"
+        app:layout_constraintStart_toStartOf="@id/textViewPedido"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/textViewDesconto"
+        android:layout_width="120dp"
+        android:layout_height="106dp"
+        android:text="DESCONTO"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/bg_rounded_textview"
+        android:drawableTop="@drawable/arrows"
+        app:layout_constraintTop_toTopOf="@id/textViewMenuInicial"
+        app:layout_constraintStart_toStartOf="@id/textViewAnular" />
+
+    <TextView
+        android:id="@+id/textViewOutros"
+        android:layout_width="120dp"
+        android:layout_height="106dp"
+        android:text="OUTROS"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/bg_rounded_textview"
+        android:drawableTop="@drawable/pedidos"
+        app:layout_constraintTop_toTopOf="@id/textViewMenuInicial"
+        app:layout_constraintStart_toStartOf="@id/textViewSubTotal" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

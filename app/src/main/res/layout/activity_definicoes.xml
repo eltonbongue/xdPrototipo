@@ -11,42 +11,38 @@
         android:id="@+id/toolbar"
         android:layout_width="404dp"
         android:layout_height="77dp"
-        android:layout_marginTop="4dp"
         android:background="@color/XD_especial"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="4dp" />
 
     <TextView
         android:id="@+id/textViewBack"
         android:layout_width="45dp"
         android:layout_height="39dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:drawableLeft="@drawable/button_back"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textViewSessao"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewSessao"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintTop_toTopOf="@+id/textViewSessao" />
 
     <TextView
         android:id="@+id/textViewSessao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="DEFINIÇÕES XD"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintHorizontal_bias="0.425"
-        app:layout_constraintStart_toEndOf="@+id/textViewBack"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

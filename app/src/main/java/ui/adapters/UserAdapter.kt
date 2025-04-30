@@ -8,8 +8,10 @@ import com.example.xdprototipo.R
 import com.example.xdprototipo.databinding.ItemUserBinding
 import data.model.User
 
-class UserAdapter(private var users: List<User>) :
-    RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(
+    private var users: List<User>,
+    private val onImageClick: (User) -> Unit
+) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -30,6 +32,11 @@ class UserAdapter(private var users: List<User>) :
             holder.binding.imageViewUsers.setImageURI(uri)
         } catch (e: Exception) {
             holder.binding.imageViewUsers.setImageResource(R.drawable.ic_user_placeholder)
+        }
+
+        // Clique na imagem
+        holder.binding.imageViewUsers.setOnClickListener {
+            onImageClick(user)
         }
     }
 
