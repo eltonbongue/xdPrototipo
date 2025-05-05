@@ -1,5 +1,6 @@
 package ui.Home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +35,17 @@ class ListaItemsActivity : AppCompatActivity() {
 
 
         adapter = ListaUserAdapter(emptyList()) { user ->
+
+            val intent = Intent(this, AlterarUsersActivity::class.java).apply {
+                putExtra("user_id", user.id)                // Int
+                putExtra("user_name", user.name)            // String
+                putExtra("user_email", user.email)          // String
+                putExtra("user_password", user.password)    // String
+                putExtra("user_photo", user.photoPath)      // String
+            }
+            startActivity(intent)
         }
+
 
         binding.RecyclerViewListaUsuarios.apply {
             layoutManager = LinearLayoutManager(this@ListaItemsActivity)
@@ -42,10 +53,9 @@ class ListaItemsActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-
+        // ViewModel e LiveData para carregar e observar usuários
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         userViewModel.usuarios.observe(this) { usuarios ->
-
             adapter.updateList(usuarios)
         }
         userViewModel.carregarUsuarios()

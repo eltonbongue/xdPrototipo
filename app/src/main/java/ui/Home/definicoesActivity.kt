@@ -36,12 +36,12 @@ class definicoesActivity : AppCompatActivity() {
         }
 
         binding.textViewUsers.setOnClickListener {
-            // Substitua pelos dados reais do usuário, se tiver autenticação implementada
+
             val user = User(
                 id = 1,
                 name = "admin",
                 email = "eltonbonguexd@example.com",
-                password = "1727" // Senha de verificação
+                password = "1727"
             )
             showPasswordDialog(user)
         }

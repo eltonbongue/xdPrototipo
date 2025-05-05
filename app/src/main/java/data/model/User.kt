@@ -5,5 +5,5 @@ data class User(
     val name: String,
     val email: String,
     val password: String,
-    val photoPath: String? = null // caminho opcional da foto
+    val photoPath: String? = null
 )
