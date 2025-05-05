@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.xdprototipo.R
 import com.example.xdprototipo.databinding.ActivityUtilizadoresBinding
 import data.model.User
@@ -37,19 +37,21 @@ class utilizadoresActivity : AppCompatActivity() {
             insets
         }
 
+
         binding.textViewBack.setOnClickListener { finish() }
-        binding.button.setOnClickListener { navigateToRegistrar() }
+
 
         adapter = UserAdapter(emptyList()) { user ->
             showPasswordDialog(user)
         }
 
-        binding.RecyclerViewUsers.layoutManager = LinearLayoutManager(
-            this,
-            LinearLayoutManager.HORIZONTAL,
-            false
-        )
+        val screenWidth = resources.displayMetrics.widthPixels
+        val itemWidth = 160
+        val columns = minOf(4, maxOf(1, screenWidth / itemWidth))
+
+        binding.RecyclerViewUsers.layoutManager = GridLayoutManager(this, columns)
         binding.RecyclerViewUsers.adapter = adapter
+
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         userViewModel.usuarios.observe(this) { usuarios ->
@@ -59,9 +61,7 @@ class utilizadoresActivity : AppCompatActivity() {
         userViewModel.carregarUsuarios()
     }
 
-    private fun navigateToRegistrar() {
-        startActivity(Intent(this, registrarUserActivity::class.java))
-    }
+
 
     private fun showPasswordDialog(user: User) {
         val input = EditText(this).apply {
@@ -78,7 +78,6 @@ class utilizadoresActivity : AppCompatActivity() {
                 if (enteredPassword == user.password) {
                     Toast.makeText(this, "Acesso concedido", Toast.LENGTH_SHORT).show()
 
-                    // Salva sessão
                     val sharedPref = getSharedPreferences("user_session", Context.MODE_PRIVATE)
                     with(sharedPref.edit()) {
                         putString("email", user.email)

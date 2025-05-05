@@ -10,6 +10,7 @@ class UserRepository(context: Context) {
 
     private val userDao = userDAO(DatabaseHelper(context))
 
+
     fun inserir(user: User): Long {
         return userDao.insert(user)
     }
@@ -21,6 +22,11 @@ class UserRepository(context: Context) {
     fun verificarLogin(email: String, senha: String): User? {
         return userDao.verificarLogin(email, senha)
     }
+
+    fun usuarioExiste(email: String): Boolean {
+        return userDao.usuarioExiste(email)
+    }
+
 
     fun deletar(user: User): Int {
         return userDao.delete(user)

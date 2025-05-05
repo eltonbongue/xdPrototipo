@@ -2,6 +2,7 @@ package data.DAO
 
 import android.content.ContentValues
 import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import data.model.User
 
@@ -14,6 +15,17 @@ class userDAO(private val dbHelper: SQLiteOpenHelper) {
     private val COLUMN_PASSWORD = "password"
     private val COLUMN_FOTO = "photo_path"
 
+
+
+    fun usuarioExiste(email: String): Boolean {
+        val db = dbHelper.readableDatabase
+        val cursor = db.rawQuery("SELECT 1 FROM users WHERE email = ?", arrayOf(email))
+        val existe = cursor.moveToFirst()
+        cursor.close()
+        return existe
+    }
+
+
     fun insert(user: User): Long {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
@@ -23,7 +35,8 @@ class userDAO(private val dbHelper: SQLiteOpenHelper) {
             put(COLUMN_FOTO, user.photoPath)
         }
 
-        return db.insertWithOnConflict(TABLE_NAME, null, values, android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE)
+        return db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_ABORT)
+
     }
 
     fun getAll(): List<User> {

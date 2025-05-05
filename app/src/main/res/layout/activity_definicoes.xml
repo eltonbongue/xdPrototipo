@@ -45,4 +45,15 @@
         app:layout_constraintStart_toEndOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
+    <TextView
+        android:id="@+id/textViewUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Usuários"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textViewBack"
+        app:layout_constraintStart_toStartOf="@+id/textViewBack"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBack" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

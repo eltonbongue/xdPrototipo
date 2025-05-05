@@ -15,55 +15,56 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="5dp" />
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="1dp" />
 
     <TextView
         android:id="@+id/textViewBack"
         android:layout_width="45dp"
         android:layout_height="39dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:drawableLeft="@drawable/button_back"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSessao"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="@+id/textViewSessao" />
 
     <TextView
         android:id="@+id/textViewSessao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="INICIAR SESSÃO XD"
+        android:text="DEFINIÇÕES  USERS XD"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintHorizontal_bias="0.395"
-        app:layout_constraintStart_toEndOf="@+id/textViewBack"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.588" />
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerViewUsers"
-        android:layout_width="411dp"
-        android:layout_height="559dp"
-        android:clipToPadding="false"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/buttonRegistrar"
+        android:layout_width="199dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="80dp"
+        android:text="REGISTRAR USUÁRIO"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/item_user" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+    <Button
+        android:id="@+id/buttonEditar"
+        android:layout_width="202dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="30dp"
+        android:text="EDITAR USUÁRIOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRegistrar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

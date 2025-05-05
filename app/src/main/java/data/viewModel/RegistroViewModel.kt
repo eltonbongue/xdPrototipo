@@ -24,7 +24,7 @@ class RegistroViewModel(application: Application) : AndroidViewModel(application
         confirmarSenha: String,
         fotoPath: String
     ) {
-        if (nome.isBlank() || email.isBlank() || senha.isBlank() || confirmarSenha.isBlank() || fotoPath.isBlank()) {
+        if (nome.isBlank() || email.isBlank() || senha.isBlank() || confirmarSenha.isBlank()) {
             _mensagem.value = "Todos os campos são obrigatórios."
             return
         }
@@ -44,11 +44,17 @@ class RegistroViewModel(application: Application) : AndroidViewModel(application
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
+                if (repository.usuarioExiste(email)) {
+                    _mensagem.postValue("Já existe um usuário com esse e-mail.")
+                    return@launch
+                }
+
                 repository.inserir(novoUsuario)
                 _mensagem.postValue("Usuário registrado com sucesso!")
             } catch (e: Exception) {
                 _mensagem.postValue("Erro ao registrar usuário: ${e.message}")
             }
         }
+
     }
 }

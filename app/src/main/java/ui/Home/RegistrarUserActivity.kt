@@ -3,9 +3,11 @@ package ui.Home
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import com.example.xdprototipo.R
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -61,9 +63,10 @@ class registrarUserActivity : AppCompatActivity() {
         val email = binding.editEmail.text.toString().trim()
         val senha = binding.editPassword.text.toString().trim()
         val confirmarSenha = binding.editConfirmPassword.text.toString().trim()
-        val fotoPath = savedImagePath ?: ""
 
-        if (nome.isBlank() || email.isBlank() || senha.isBlank() || confirmarSenha.isBlank() || fotoPath.isBlank()) {
+        val fotoPath = savedImagePath ?: salvarPlaceholderComoFoto()
+
+        if (nome.isBlank() || email.isBlank() || senha.isBlank() || confirmarSenha.isBlank()) {
             Toast.makeText(this, "Todos os campos são obrigatórios.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -73,7 +76,7 @@ class registrarUserActivity : AppCompatActivity() {
             return
         }
 
-        viewModel.registrarUsuario(nome, email, senha, confirmarSenha, fotoPath)
+        viewModel.registrarUsuario(nome, email, senha, confirmarSenha, fotoPath ?: "")
     }
 
     @Deprecated("Deprecated in Java")
@@ -87,7 +90,6 @@ class registrarUserActivity : AppCompatActivity() {
                 selectedBitmap = bitmap
                 binding.imageViewUser.setImageBitmap(bitmap)
 
-                // Salvar diretamente como arquivo
                 savedImagePath = salvarBitmapInternamente(bitmap)
                 if (savedImagePath == null) {
                     Toast.makeText(this, "Erro ao salvar a imagem.", Toast.LENGTH_SHORT).show()
@@ -98,12 +100,24 @@ class registrarUserActivity : AppCompatActivity() {
 
     private fun salvarBitmapInternamente(bitmap: Bitmap): String? {
         return try {
-            val file = File(filesDir, "foto_${System.currentTimeMillis()}.jpg")
+            val file = File(filesDir, "foto_${System.currentTimeMillis()}.png")
             val outputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
             outputStream.flush()
             outputStream.close()
             file.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+
+    private fun salvarPlaceholderComoFoto(): String? {
+        return try {
+
+            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_user_placeholder)
+            salvarBitmapInternamente(bitmap)
         } catch (e: Exception) {
             e.printStackTrace()
             null
@@ -115,7 +129,10 @@ class registrarUserActivity : AppCompatActivity() {
         binding.editEmail.text.clear()
         binding.editPassword.text.clear()
         binding.editConfirmPassword.text.clear()
-        binding.imageViewUser.setImageResource(0)
+
+
+        binding.imageViewUser.setImageBitmap(BitmapFactory.decodeResource(resources, R.drawable.ic_user_placeholder))
+
         selectedBitmap = null
         savedImagePath = null
     }
