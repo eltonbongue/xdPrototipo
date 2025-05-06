@@ -37,11 +37,11 @@ class ListaItemsActivity : AppCompatActivity() {
         adapter = ListaUserAdapter(emptyList()) { user ->
 
             val intent = Intent(this, AlterarUsersActivity::class.java).apply {
-                putExtra("user_id", user.id)                // Int
-                putExtra("user_name", user.name)            // String
-                putExtra("user_email", user.email)          // String
-                putExtra("user_password", user.password)    // String
-                putExtra("user_photo", user.photoPath)      // String
+                putExtra("user_id", user.id)              
+                putExtra("user_name", user.name)
+                putExtra("user_email", user.email)
+                putExtra("user_password", user.password)
+                putExtra("user_photo", user.photoPath)
             }
             startActivity(intent)
         }

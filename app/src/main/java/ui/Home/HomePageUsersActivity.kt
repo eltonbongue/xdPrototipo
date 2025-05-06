@@ -1,6 +1,8 @@
 package ui.Home
 
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +31,13 @@ class HomePageUsersActivity : AppCompatActivity() {
 
         userRepository = UserRepository(this)
         loadUserFromSession()
+
+        binding.textViewPedido.setOnClickListener {
+            val intent = Intent(this, PedirActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
     private fun loadUserFromSession() {
@@ -42,6 +51,12 @@ class HomePageUsersActivity : AppCompatActivity() {
         }
     }
 
+
+
+
+
+
+
     private fun showUserInfo(user: User?) {
         user?.let {
             binding.textViewUserName.text = it.name
@@ -51,6 +66,7 @@ class HomePageUsersActivity : AppCompatActivity() {
                 if (file.exists()) {
                     val bitmap = BitmapFactory.decodeFile(path)
                     binding.imageViewUserHome.setImageBitmap(bitmap)
+                    binding.imageViewUserHome.invalidate()
                 }
             }
         }

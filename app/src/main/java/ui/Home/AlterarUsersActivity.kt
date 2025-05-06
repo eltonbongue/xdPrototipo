@@ -1,6 +1,7 @@
 package ui.Home
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
@@ -24,22 +25,35 @@ class AlterarUsersActivity : AppCompatActivity() {
         ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         if (uri != null) {
-
             try {
                 contentResolver.takePersistableUriPermission(
                     uri,
                     Intent.FLAG_GRANT_READ_URI_PERMISSION
                 )
             } catch (e: SecurityException) {
-
+                e.printStackTrace()
             }
 
-            userPhotoPath = uri.toString()
-            binding.imageViewUser.setImageURI(uri)
+            val inputStream = contentResolver.openInputStream(uri)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            inputStream?.close()
+
+            if (bitmap != null) {
+                val userId = intent.getIntExtra("user_id", -1)
+                val user = User(id = userId, name = "", email = "", password = "", photoPath = "")
+
+                val novoCaminho = userRepository.saveUserImageToInternalStorage(this, bitmap, user.id)
+                userPhotoPath = novoCaminho
+
+                binding.imageViewUser.setImageBitmap(bitmap)
+            } else {
+                Toast.makeText(this, "Erro ao carregar imagem", Toast.LENGTH_SHORT).show()
+            }
         } else {
             Toast.makeText(this, "Nenhuma imagem selecionada", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

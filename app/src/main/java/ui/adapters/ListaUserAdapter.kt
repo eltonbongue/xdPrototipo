@@ -25,7 +25,6 @@ class ListaUserAdapter(
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = users[position]
 
-        // Preenche texto
         holder.binding.textViewNome.text = user.name
         holder.binding.textViewEmail.text = user.email
 
