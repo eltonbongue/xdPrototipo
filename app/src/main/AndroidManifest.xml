@@ -16,6 +16,9 @@
         android:theme="@style/Theme.XdPrototipo"
         tools:targetApi="31">
         <activity
+            android:name="ui.Home.PedidoDeProdutosActivity"
+            android:exported="false" />
+        <activity
             android:name="ui.Home.PedirActivity"
             android:exported="false" />
         <activity

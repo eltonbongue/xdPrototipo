@@ -1,10 +1,46 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
     tools:context="ui.fragments.EsplanadaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/button43"
+        android:layout_width="130dp"
+        android:layout_height="94dp"
+        android:layout_marginEnd="25dp"
+        android:background="#0F72BF"
+        android:backgroundTint="@color/white"
+        android:text="ESPLANADA/3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button42"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/button42"
+        android:layout_width="130dp"
+        android:layout_height="94dp"
+        android:layout_marginEnd="9dp"
+        android:background="#0F72BF"
+        android:text="ESPLANADA/2"
+        app:layout_constraintEnd_toStartOf="@+id/button43"
+        app:layout_constraintStart_toEndOf="@id/button41"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/button41"
+        android:layout_width="130dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="9dp"
+        android:background="#1E97F0"
+        android:backgroundTint="#0F7EFB"
+        android:text="ESPLANADA/1"
+        app:layout_constraintEnd_toStartOf="@+id/button42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

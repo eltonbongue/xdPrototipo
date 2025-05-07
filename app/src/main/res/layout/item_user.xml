@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.gridlayout.widget.GridLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:columnCount="4"
     android:padding="8dp"
-    android:layout_marginEnd="8dp">
+    android:layout_marginEnd="8dp"
+    app:columnCount="4">
 
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +21,8 @@ android:padding="8dp">
     android:layout_height="60dp"
     android:scaleType="centerCrop"
     android:src="@drawable/ic_user_placeholder"
-    android:background="@android:color/transparent"/>
+    android:background="@android:color/transparent"
+  />
 
 <TextView
     android:id="@+id/textNome"
@@ -32,9 +35,10 @@ android:padding="8dp">
     android:textAlignment="center"
     android:layout_marginTop="4dp"
     android:layout_alignParentBottom="true"
-    android:layout_alignParentLeft="true"/>
+    android:layout_alignParentLeft="true"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-    </androidx.gridlayout.widget.GridLayout>
+</androidx.gridlayout.widget.GridLayout>

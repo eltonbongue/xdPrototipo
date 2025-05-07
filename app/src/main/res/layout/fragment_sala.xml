@@ -1,10 +1,84 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ui.fragments.SalaFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="ui.fragments.SalaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/button43"
+        android:layout_width="130dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="25dp"
+        android:background="#0F72BF"
+        android:text="SALA/3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button42"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/button42"
+        android:layout_width="130dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:background="#0F72BF"
+        android:text="SALA/2"
+        app:layout_constraintEnd_toStartOf="@+id/button43"
+        app:layout_constraintStart_toEndOf="@id/button41"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/button41"
+        android:layout_width="130dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:background="#1E97F0"
+        android:backgroundTint="#0F7EFB"
+        android:text="SALA/1"
+        app:layout_constraintEnd_toStartOf="@+id/button42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button39"
+        android:layout_width="130dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#0F72BF"
+        android:text="SALA/5"
+        app:layout_constraintEnd_toEndOf="@+id/button42"
+        app:layout_constraintStart_toStartOf="@+id/button42"
+        tools:layout_editor_absoluteY="204dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="130dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#0F72BF"
+        android:text="SALA/6"
+        app:layout_constraintEnd_toEndOf="@+id/button43"
+        app:layout_constraintStart_toStartOf="@+id/button43"
+        tools:layout_editor_absoluteY="204dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="130dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="10dp"
+        android:background="#0F72BF"
+        android:text="SALA/4"
+        app:layout_constraintEnd_toEndOf="@+id/button41"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="204dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
