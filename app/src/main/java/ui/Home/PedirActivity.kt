@@ -35,14 +35,13 @@ class PedirActivity : AppCompatActivity() {
         tabLayout = binding.TabLayoutPedir
         viewPager2 = binding.viewPagerPedir
 
-        // Adiciona abas
         tabLayout.addTab(tabLayout.newTab().setText("MINHAS"))
         tabLayout.addTab(tabLayout.newTab().setText("TODAS"))
         tabLayout.addTab(tabLayout.newTab().setText("BAR"))
         tabLayout.addTab(tabLayout.newTab().setText("SALA"))
         tabLayout.addTab(tabLayout.newTab().setText("ESPLANADA"))
 
-        // Adapter para o ViewPager2
+
         val adapter = AdapterFragments(this)
         viewPager2.adapter = adapter
 

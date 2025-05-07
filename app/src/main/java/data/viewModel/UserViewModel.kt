@@ -1,6 +1,8 @@
 package data.viewModel
 
 import android.app.Application
+import android.content.Context
+import android.graphics.Bitmap
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +23,25 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             val users = repository.getTodos()
             _usuarios.postValue(users)
+        }
+    }
+
+    fun saveUserImageToInternalStorage(context: Context, bitmap: Bitmap, userId: Int): String {
+        return repository.saveUserImageToInternalStorage(context, bitmap, userId)
+    }
+
+
+    fun actualizarUsuario(user: User) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateUser(user)
+            carregarUsuarios()
+        }
+    }
+
+    fun deletarUsuario(user: User) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteUser(user)
+            carregarUsuarios()
         }
     }
 }

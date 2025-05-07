@@ -36,7 +36,7 @@ class ListaUserAdapter(
             holder.binding.imageViewUsuarios.setImageResource(R.drawable.ic_user_placeholder)
         }
 
-        // Clique em qualquer parte do item
+
         holder.itemView.setOnClickListener {
             onItemClick(user)
         }

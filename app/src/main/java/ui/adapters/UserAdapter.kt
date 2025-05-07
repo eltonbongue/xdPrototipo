@@ -34,7 +34,6 @@ class UserAdapter(
             holder.binding.imageViewUsers.setImageResource(R.drawable.ic_user_placeholder)
         }
 
-        // Clique na imagem
         holder.binding.imageViewUsers.setOnClickListener {
             onImageClick(user)
         }

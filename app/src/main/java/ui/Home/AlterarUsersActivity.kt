@@ -10,50 +10,42 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.xdprototipo.R
 import com.example.xdprototipo.databinding.ActivityAlterarUsersBinding
 import data.model.User
-import data.repository.UserRepository
+import data.viewModel.UserViewModel
 
 class AlterarUsersActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityAlterarUsersBinding
-    private lateinit var userRepository: UserRepository
-    private var userPhotoPath: String = ""
 
+    private lateinit var binding: ActivityAlterarUsersBinding
+    private lateinit var userViewModel: UserViewModel
+    private var userPhotoPath: String = ""
 
     private val pickImageLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
-        if (uri != null) {
+        uri?.let {
             try {
-                contentResolver.takePersistableUriPermission(
-                    uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
-            } catch (e: SecurityException) {
+                contentResolver.takePersistableUriPermission(it, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                val inputStream = contentResolver.openInputStream(it)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                inputStream?.close()
+
+                if (bitmap != null) {
+                    val userId = intent.getIntExtra("user_id", -1)
+                    val novoCaminho = userViewModel.saveUserImageToInternalStorage(applicationContext, bitmap, userId)
+                    userPhotoPath = novoCaminho
+                    binding.imageViewUser.setImageBitmap(bitmap)
+                } else {
+                    showToast("Erro ao carregar imagem")
+                }
+            } catch (e: Exception) {
                 e.printStackTrace()
+                showToast("Erro ao acessar imagem")
             }
-
-            val inputStream = contentResolver.openInputStream(uri)
-            val bitmap = BitmapFactory.decodeStream(inputStream)
-            inputStream?.close()
-
-            if (bitmap != null) {
-                val userId = intent.getIntExtra("user_id", -1)
-                val user = User(id = userId, name = "", email = "", password = "", photoPath = "")
-
-                val novoCaminho = userRepository.saveUserImageToInternalStorage(this, bitmap, user.id)
-                userPhotoPath = novoCaminho
-
-                binding.imageViewUser.setImageBitmap(bitmap)
-            } else {
-                Toast.makeText(this, "Erro ao carregar imagem", Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(this, "Nenhuma imagem selecionada", Toast.LENGTH_SHORT).show()
-        }
+        } ?: showToast("Nenhuma imagem selecionada")
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,8 +59,7 @@ class AlterarUsersActivity : AppCompatActivity() {
             insets
         }
 
-        userRepository = UserRepository(this)
-
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         val userId = intent.getIntExtra("user_id", -1)
         val userName = intent.getStringExtra("user_name") ?: ""
@@ -77,12 +68,10 @@ class AlterarUsersActivity : AppCompatActivity() {
         val userPhoto = intent.getStringExtra("user_photo") ?: ""
         userPhotoPath = userPhoto
 
-
         binding.editName.setText(userName)
         binding.editEmail.setText(userEmail)
         binding.editPassword.setText(userPass)
         binding.editConfirmPassword.setText("")
-
 
         if (userPhotoPath.isNotEmpty()) {
             try {
@@ -94,7 +83,6 @@ class AlterarUsersActivity : AppCompatActivity() {
             binding.imageViewUser.setImageResource(R.drawable.ic_user_placeholder)
         }
 
-
         binding.btnActualizar.setOnClickListener {
             val updatedUser = User(
                 id = userId,
@@ -103,28 +91,24 @@ class AlterarUsersActivity : AppCompatActivity() {
                 password = binding.editConfirmPassword.text.toString().ifBlank { userPass },
                 photoPath = userPhotoPath
             )
-            val rows = userRepository.updateUser(updatedUser)
-            Toast.makeText(this, "Linhas atualizadas: $rows", Toast.LENGTH_SHORT).show()
+            userViewModel.actualizarUsuario(updatedUser)
+            showToast("Usuário atualizado com sucesso")
             finish()
         }
-
 
         binding.btnApagar.setOnClickListener {
-            val userToDelete = User(
-                id = userId,
-                name = "",
-                email = "",
-                password = "",
-                photoPath = ""
-            )
-            val rows = userRepository.deleteUser(userToDelete)
-            Toast.makeText(this, "Linhas deletadas: $rows", Toast.LENGTH_SHORT).show()
+            val userToDelete = User(id = userId, name = "", email = "", password = "", photoPath = "")
+            userViewModel.deletarUsuario(userToDelete)
+            showToast("Usuário deletado com sucesso")
             finish()
         }
-
 
         binding.btnChoosePhoto.setOnClickListener {
             pickImageLauncher.launch("image/*")
         }
+    }
+
+    private fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }
