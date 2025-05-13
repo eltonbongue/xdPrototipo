@@ -35,6 +35,10 @@ class definicoesActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.textViewProdutos.setOnClickListener {
+            startActivity(Intent(this, DefinicoesProdutoActivity::class.java))
+        }
+
         binding.textViewUsers.setOnClickListener {
 
             val user = User(
@@ -55,7 +59,7 @@ class definicoesActivity : AppCompatActivity() {
 
         AlertDialog.Builder(this)
             .setTitle("Autenticação")
-            .setMessage("Insira a senha para acessar o perfil de ${user.name}")
+            .setMessage("Insira a senha para acessar a tela de usuários. Acesso restrito(${user.name})")
             .setView(input)
             .setPositiveButton("OK") { dialog, _ ->
                 val enteredPassword = input.text.toString()

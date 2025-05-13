@@ -27,12 +27,12 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@+id/textViewSessao"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewSessao"
+        app:layout_constraintTop_toTopOf="@+id/textViewProduto"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewProduto"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewSessao"
+        android:id="@+id/textViewProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mesa/Cartão"

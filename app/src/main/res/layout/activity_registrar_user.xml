@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvRegisterTitle" />
+        app:layout_constraintTop_toBottomOf="@id/textViewCategoriaP" />
 
     <EditText
         android:id="@+id/editEmail"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/editName" />
 
     <TextView
-        android:id="@+id/tvRegisterTitle"
+        android:id="@+id/textViewCategoriaP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -137,8 +137,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editConfirmPassword"
         tools:srcCompat="@tools:sample/avatars" />
-
-    <!-- Link para Login -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

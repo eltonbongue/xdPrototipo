@@ -10,10 +10,12 @@ import com.example.xdprototipo.R
 import ui.Home.ListaItemsActivity
 
 import com.example.xdprototipo.databinding.ActivityDefinicoesUsersBinding
+import data.viewModel.ProdutoViewModel
 
 class DefinicoesUsersActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDefinicoesUsersBinding
+    private lateinit var viewModel: ProdutoViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDefinicoesUsersBinding.inflate(layoutInflater)

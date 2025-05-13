@@ -7,6 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
+    override fun onConfigure(db: SQLiteDatabase) {
+        super.onConfigure(db)
+        db.execSQL("PRAGMA foreign_keys = ON")
+    }
+
+
     override fun onCreate(db: SQLiteDatabase) {
 
         // Usuários
@@ -26,8 +32,6 @@ class DatabaseHelper(context: Context) :
             CREATE TABLE $TABLE_MESA (
                 $COLUMN_MESA_ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 $COLUMN_MESA_NOME TEXT NOT NULL,
-                $COLUMN_MESA_STATUS TEXT NOT NULL DEFAULT 'Livre',
-                $COLUMN_MESA_ATENDENTE TEXT,
                 $COLUMN_MESA_ABERTURA INTEGER,
                 $COLUMN_MESA_FECHAMENTO INTEGER
             );
@@ -49,7 +53,6 @@ class DatabaseHelper(context: Context) :
                 $COLUMN_PRODUTO_ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 $COLUMN_PRODUTO_NOME TEXT NOT NULL,
                 $COLUMN_PRODUTO_PRECO REAL NOT NULL,
-                $COLUMN_PRODUTO_DESCRICAO TEXT,
                 $COLUMN_PRODUTO_CATEGORIA_ID INTEGER,
                 FOREIGN KEY ($COLUMN_PRODUTO_CATEGORIA_ID) REFERENCES $TABLE_CATEGORIA($COLUMN_CATEGORIA_ID)
             );
@@ -65,7 +68,6 @@ class DatabaseHelper(context: Context) :
                 $COLUMN_PEDIDO_QUANTIDADE INTEGER NOT NULL DEFAULT 1,
                 $COLUMN_PEDIDO_OBSERVACOES TEXT,
                 $COLUMN_PEDIDO_TIMESTAMP INTEGER DEFAULT (strftime('%s','now')),
-                $COLUMN_PEDIDO_STATUS TEXT DEFAULT 'Pendente',
                 FOREIGN KEY ($COLUMN_PEDIDO_MESA_ID) REFERENCES $TABLE_MESA($COLUMN_MESA_ID),
                 FOREIGN KEY ($COLUMN_PEDIDO_PRODUTO_ID) REFERENCES $TABLE_PRODUTO($COLUMN_PRODUTO_ID)
             );
@@ -81,6 +83,25 @@ class DatabaseHelper(context: Context) :
         db.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
         onCreate(db)
     }
+
+    fun listarCategorias(): List<Pair<Int, String>> {
+        val categorias = mutableListOf<Pair<Int, String>>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT categoria_id, nome FROM categoria", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("categoria_id"))
+                val nome = cursor.getString(cursor.getColumnIndexOrThrow("nome"))
+                categorias.add(id to nome)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return categorias
+    }
+
 
     companion object {
         const val DATABASE_NAME = "SQLiteDatabase"
@@ -98,8 +119,6 @@ class DatabaseHelper(context: Context) :
         const val TABLE_MESA = "mesa"
         const val COLUMN_MESA_ID = "mesa_id"
         const val COLUMN_MESA_NOME = "nome"
-        const val COLUMN_MESA_STATUS = "status"
-        const val COLUMN_MESA_ATENDENTE = "atendente"
         const val COLUMN_MESA_ABERTURA = "dataHoraAbertura"
         const val COLUMN_MESA_FECHAMENTO = "dataHoraFechamento"
 
@@ -113,7 +132,6 @@ class DatabaseHelper(context: Context) :
         const val COLUMN_PRODUTO_ID = "produto_id"
         const val COLUMN_PRODUTO_NOME = "nome"
         const val COLUMN_PRODUTO_PRECO = "preco"
-        const val COLUMN_PRODUTO_DESCRICAO = "descricao"
         const val COLUMN_PRODUTO_CATEGORIA_ID = "categoria_id"
 
         // PEDIDO
@@ -124,6 +142,5 @@ class DatabaseHelper(context: Context) :
         const val COLUMN_PEDIDO_QUANTIDADE = "quantidade"
         const val COLUMN_PEDIDO_OBSERVACOES = "observacoes"
         const val COLUMN_PEDIDO_TIMESTAMP = "timestamp"
-        const val COLUMN_PEDIDO_STATUS = "status"
     }
 }

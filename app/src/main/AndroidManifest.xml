@@ -16,6 +16,15 @@
         android:theme="@style/Theme.XdPrototipo"
         tools:targetApi="31">
         <activity
+            android:name="ui.Home.CadastroCategoriaActivity"
+            android:exported="false" />
+        <activity
+            android:name="ui.Home.CadastrarProdutoActivity"
+            android:exported="false" />
+        <activity
+            android:name="ui.Home.DefinicoesProdutoActivity"
+            android:exported="false" />
+        <activity
             android:name="ui.Home.PedidoDeProdutosActivity"
             android:exported="false" />
         <activity
